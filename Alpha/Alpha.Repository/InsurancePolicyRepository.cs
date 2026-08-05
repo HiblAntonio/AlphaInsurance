@@ -917,7 +917,7 @@ namespace Alpha.Repository
                                 "INNER JOIN InsuranceCompanies ON InsurancePolicies.InsuranceCompanyId = InsuranceCompanies.Id " +
                                 "LEFT JOIN Agents AS CreatorAgent ON CreatorAgent.Id = InsurancePolicies.CreatedBy " +
                                 "LEFT JOIN Users AS CreatorUser ON CreatorUser.Id = CreatorAgent.UserId " +
-                                "WHERE (InsurancePolicies.IsActive = 1 OR InsurancePolicies.IsActive IS NULL) AND CONVERT(DATE, InsurancePolicies.DateCreated) = CONVERT(DATE, GETDATE()) ");
+                                "WHERE (InsurancePolicies.IsActive = 1 OR InsurancePolicies.IsActive IS NULL) AND CONVERT(DATE, InsurancePolicies.DateCreated) = @Today ");
 
                 await TodaysInsurancePoliciesFilter(filter, queryBuilder);
 
@@ -927,6 +927,7 @@ namespace Alpha.Repository
 
                 using (SqlCommand cmd = new SqlCommand(queryBuilder.ToString(), conn))
                 {
+                    cmd.Parameters.AddWithValue("@Today", DateTime.Today);
                     cmd.Parameters.AddWithValue("@Offset", (paging.PageNumber - 1) * paging.PageSize);
                     cmd.Parameters.AddWithValue("@PageSize", paging.PageSize);
 
@@ -1011,7 +1012,7 @@ namespace Alpha.Repository
             var agents = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var locations = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-            const string query = @"
+            string query = @"
                 SELECT DISTINCT
                     COALESCE(NULLIF(Partners.Name, ''), Users.Name) AS Agent,
                     Locations.Name AS Location
@@ -1021,20 +1022,23 @@ namespace Alpha.Repository
                 INNER JOIN Users ON Clients.UserId = Users.Id
                 LEFT JOIN Partners ON Partners.Id = InsurancePolicies.PartnerId
                 INNER JOIN InsuranceCompanies ON InsurancePolicies.InsuranceCompanyId = InsuranceCompanies.Id
-                WHERE CONVERT(DATE, InsurancePolicies.DateCreated) = CONVERT(DATE, GETDATE())";
+                WHERE CONVERT(DATE, InsurancePolicies.DateCreated) = @Today";
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 await conn.OpenAsync();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
-                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
-                    while (await reader.ReadAsync())
+                    cmd.Parameters.AddWithValue("@Today", DateTime.Today);
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        var agent = reader["Agent"]?.ToString();
-                        var location = reader["Location"]?.ToString();
-                        if (!string.IsNullOrWhiteSpace(agent)) agents.Add(agent);
-                        if (!string.IsNullOrWhiteSpace(location)) locations.Add(location);
+                        while (await reader.ReadAsync())
+                        {
+                            var agent = reader["Agent"]?.ToString();
+                            var location = reader["Location"]?.ToString();
+                            if (!string.IsNullOrWhiteSpace(agent)) agents.Add(agent);
+                            if (!string.IsNullOrWhiteSpace(location)) locations.Add(location);
+                        }
                     }
                 }
             }
@@ -1065,13 +1069,14 @@ namespace Alpha.Repository
                     LEFT JOIN Partners ON Partners.Id = InsurancePolicies.PartnerId
                     INNER JOIN InsuranceCompanies ON InsurancePolicies.InsuranceCompanyId = InsuranceCompanies.Id
                     WHERE (InsurancePolicies.IsActive = 1 OR InsurancePolicies.IsActive IS NULL)
-                    AND CONVERT(DATE, InsurancePolicies.DateCreated) = CONVERT(DATE, GETDATE())
+                    AND CONVERT(DATE, InsurancePolicies.DateCreated) = @Today
                 ");
 
                 await TodaysInsurancePoliciesFilter(filter, queryBuilder);
 
                 using (SqlCommand cmd = new SqlCommand(queryBuilder.ToString(), conn))
                 {
+                    cmd.Parameters.AddWithValue("@Today", DateTime.Today);
                     totalCount = (int)await cmd.ExecuteScalarAsync();
                 }
             }
@@ -1437,10 +1442,11 @@ namespace Alpha.Repository
 
                 string query = "SELECT COUNT(*) AS PoliciesEnteredToday" +
                     " FROM InsurancePolicies" +
-                    " WHERE CONVERT(DATE, DateCreated) = CONVERT(DATE, GETDATE());";
+                    " WHERE CONVERT(DATE, DateCreated) = @Today;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@Today", DateTime.Today);
                     return (int)await cmd.ExecuteScalarAsync();
                 }
             }
@@ -1527,12 +1533,13 @@ namespace Alpha.Repository
                     SELECT L.Name AS LocationName, COUNT(IP.Id) AS PoliciesCount
                     FROM Locations L
                     LEFT JOIN InsurancePolicies IP ON L.Id = IP.LocationId 
-                        AND CONVERT(DATE, IP.DateCreated) = CONVERT(DATE, GETDATE())
+                        AND CONVERT(DATE, IP.DateCreated) = @Today
                     WHERE L.Name IN (" + string.Join(",", locationNames.Select((_, i) => $"@Location{i}")) + @")
                     GROUP BY L.Name;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@Today", DateTime.Today);
                     for (int i = 0; i < locationNames.Count; i++)
                     {
                         cmd.Parameters.AddWithValue($"@Location{i}", locationNames[i]);
@@ -1715,11 +1722,12 @@ namespace Alpha.Repository
                 string query = @"
                         SELECT SUM(Price)
                         FROM InsurancePolicies
-                        WHERE DateCreated >= CAST(GETDATE() AS DATE)
-                          AND DateCreated < DATEADD(DAY, 1, CAST(GETDATE() AS DATE))";
+                        WHERE DateCreated >= @Today
+                          AND DateCreated < DATEADD(DAY, 1, @Today)";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@Today", DateTime.Today);
                     var result = await cmd.ExecuteScalarAsync();
 
                     // Handle NULL and convert safely to float
