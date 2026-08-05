@@ -1,0 +1,20 @@
+{
+  
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "Jwt": {
+    "Key": "p+l5B+5nmn++V7/D957F5YwzW4WKQxn80y5uy8QN1zg=",
+    "Issuer": "Alpha",
+    "Audience": "AlphaUsers",
+    "ExpiresInMinutes": 60
+} ,
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=AlphaDatabase;User Id=sa;Password=Alpha2022;TrustServerCertificate=True;"
+  }
+}
+
