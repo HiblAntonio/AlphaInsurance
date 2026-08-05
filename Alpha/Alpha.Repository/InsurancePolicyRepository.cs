@@ -1365,6 +1365,7 @@ namespace Alpha.Repository
 
         #endregion
 
+        #region Webforms
         // ------------------- INSURANCE POLICY METHODS FROM WEBFORMS ------------------
 
         public async Task<bool> UpdateInsurancePolicyAsync(InsurancePolicyModelView insurancePolicy)
@@ -2544,6 +2545,8 @@ namespace Alpha.Repository
 
             return (companies, policyTypes, locations, partners);
         }
+
+        #endregion
 
     }
 }
