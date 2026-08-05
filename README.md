@@ -51,7 +51,7 @@ DANTE is a web-based insurance policy management system built for insurance agen
 - **Expiring policies** — Donut chart showing expiring policies by insurance type with tooltip breakdown
 - **Premium comparison** — Multi-year premium sum comparison
 
-### B-Škadenca
+### B-Skadenca
 - Dedicated page for tracking policy renewals year-over-year
 - Fair YTD comparison: both years are capped at today's day-of-year
 - Filterable by insurance company, type, location, and custom date range
@@ -111,48 +111,11 @@ DANTE is a web-based insurance policy management system built for insurance agen
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/HiblAntonio/Dante-backup
 cd "Alpha web"
 ```
 
-### 2. Set up the database
-
-Connect to your SQL Server instance and run the database creation scripts located in the `Alpha.DAL` project (or restore a backup if provided).
-
-After the base schema is created, run the following migration to enable lookup value activation/deactivation:
-
-```sql
-ALTER TABLE InsuranceCompanies ADD IsActive BIT NOT NULL DEFAULT 1;
-ALTER TABLE PolicyTypes        ADD IsActive BIT NOT NULL DEFAULT 1;
-ALTER TABLE Locations          ADD IsActive BIT NOT NULL DEFAULT 1;
-ALTER TABLE Partners           ADD IsActive BIT NOT NULL DEFAULT 1;
-```
-
-### 3. Configure the backend
-
-Open `Alpha/Alpha.WebAPI/appsettings.json` and update the connection string:
-
-```json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=YOUR_SERVER;Database=AlphaDatabase;User Id=YOUR_USER;Password=YOUR_PASSWORD;TrustServerCertificate=True;"
-}
-```
-
-The default configuration targets `localhost,1434` with user `sa` and password `Alpha2022`. Adjust to match your local SQL Server instance.
-
-You can also update the JWT settings:
-
-```json
-"Jwt": {
-  "Key": "your-secret-key-minimum-32-characters",
-  "Issuer": "Alpha",
-  "Audience": "AlphaUsers",
-  "ExpiresInMinutes": 60,
-  "RefreshTokenExpirationDays": 30
-}
-```
-
-### 4. Configure the frontend
+### 2. Configure the frontend
 
 The frontend calls `http://localhost:5000` by default. If your backend runs on a different port, create a `.env` file in `Alpha-frontend/alpha-frontend/`:
 
@@ -160,7 +123,7 @@ The frontend calls `http://localhost:5000` by default. If your backend runs on a
 REACT_APP_API_BASE_URL=http://localhost:5000
 ```
 
-### 5. Install frontend dependencies
+### 3. Install frontend dependencies
 
 ```bash
 cd Alpha-frontend/alpha-frontend
@@ -251,7 +214,7 @@ DANTE je web aplikacija za upravljanje policama osiguranja namijenjena agentima 
 - **Police koje ističu** — Kružni graf polica koje ističu po vrstama osiguranja s tooltip prikazom
 - **Usporedba premija** — Višegodišnja usporedba ukupnih premija
 
-### B-Škadenca
+### B-Skadenca
 - Zasebna stranica za praćenje obnavljanja polica po godinama
 - Pravedna usporedba od početka godine: obje godine su ograničene na trenutni dan u godini
 - Filtriranje po osiguravajućoj kući, vrsti, prodajnom mjestu i datumskom rasponu
@@ -311,48 +274,11 @@ DANTE je web aplikacija za upravljanje policama osiguranja namijenjena agentima 
 ### 1. Kloniranje repozitorija
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/HiblAntonio/Dante-backup
 cd "Alpha web"
 ```
 
-### 2. Postavljanje baze podataka
-
-Spojite se na SQL Server instancu i pokrenite skripte za kreiranje baze iz projekta `Alpha.DAL` (ili obnovite backup ako je dostupan).
-
-Nakon kreiranja osnovne sheme, pokrenite sljedeću migraciju za aktivaciju/deaktivaciju lookup vrijednosti:
-
-```sql
-ALTER TABLE InsuranceCompanies ADD IsActive BIT NOT NULL DEFAULT 1;
-ALTER TABLE PolicyTypes        ADD IsActive BIT NOT NULL DEFAULT 1;
-ALTER TABLE Locations          ADD IsActive BIT NOT NULL DEFAULT 1;
-ALTER TABLE Partners           ADD IsActive BIT NOT NULL DEFAULT 1;
-```
-
-### 3. Konfiguracija backenda
-
-Otvorite `Alpha/Alpha.WebAPI/appsettings.json` i ažurirajte connection string:
-
-```json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=VAŠ_SERVER;Database=AlphaDatabase;User Id=VAŠ_KORISNIK;Password=VAŠA_LOZINKA;TrustServerCertificate=True;"
-}
-```
-
-Zadana konfiguracija koristi `localhost,1434` s korisnikom `sa` i lozinkom `Alpha2022`. Prilagodite prema vašoj lokalnoj SQL Server instanci.
-
-JWT postavke po potrebi:
-
-```json
-"Jwt": {
-  "Key": "vaš-tajni-ključ-minimalno-32-znaka",
-  "Issuer": "Alpha",
-  "Audience": "AlphaUsers",
-  "ExpiresInMinutes": 60,
-  "RefreshTokenExpirationDays": 30
-}
-```
-
-### 4. Konfiguracija frontenda
+### 2. Konfiguracija frontenda
 
 Frontend zadano poziva `http://localhost:5000`. Ako backend radi na drugom portu, kreirajte `.env` datoteku u `Alpha-frontend/alpha-frontend/`:
 
@@ -360,7 +286,7 @@ Frontend zadano poziva `http://localhost:5000`. Ako backend radi na drugom portu
 REACT_APP_API_BASE_URL=http://localhost:5000
 ```
 
-### 5. Instalacija frontend ovisnosti
+### 3. Instalacija frontend ovisnosti
 
 ```bash
 cd Alpha-frontend/alpha-frontend
