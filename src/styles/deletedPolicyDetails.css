@@ -1,0 +1,53 @@
+.deleted-policy-details-page .details-status {
+  border-color: #ff3b30;
+  background: #fee4e2;
+  color: #ff3b30;
+}
+
+.deleted-policy-details-page .details-action.dark {
+  min-width: 197px;
+}
+
+.deleted-policy-notice {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 68px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  border: 1px solid #ff3b30;
+  border-radius: 4px;
+  background: #fff0ef;
+  color: #ff3b30;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 400;
+}
+
+.deleted-policy-notice img {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  filter: brightness(0) saturate(100%) invert(23%) sepia(97%) saturate(2609%) hue-rotate(350deg) brightness(107%) contrast(101%);
+}
+
+.deleted-policy-notice strong {
+  font-weight: 500;
+}
+
+.details-info-card.without-partner {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+@media (max-width: 1200px) {
+  .details-info-card.without-partner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .details-info-card.without-partner {
+    grid-template-columns: 1fr;
+  }
+}
