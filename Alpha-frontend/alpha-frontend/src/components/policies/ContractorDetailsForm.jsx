@@ -6,7 +6,6 @@ export default function ContractorDetailsForm({
   onSubmit,
   canSubmit,
   submitLabel,
-  radioName = "contractorPersonType",
   currentContractor,
   showCurrentContractor = false,
   useNameInput = false,
@@ -92,38 +91,6 @@ export default function ContractorDetailsForm({
             />
           </div>
         )}
-      </div>
-
-      <div className="person-type-row">
-        <label className="checkbox-pill">
-          <input
-            type="radio"
-            name={radioName}
-            checked={values.personType === "fizicka"}
-            onChange={() => onChange("personType", "fizicka")}
-          />
-          <span>Fizička osoba</span>
-        </label>
-
-        <label className="checkbox-pill">
-          <input
-            type="radio"
-            name={radioName}
-            checked={values.personType === "firma"}
-            onChange={() => onChange("personType", "firma")}
-          />
-          <span>Firma</span>
-        </label>
-
-        <label className="checkbox-pill">
-          <input
-            type="radio"
-            name={radioName}
-            checked={values.personType === "obrt"}
-            onChange={() => onChange("personType", "obrt")}
-          />
-          <span>Obrt</span>
-        </label>
       </div>
 
       <div className="form-group">

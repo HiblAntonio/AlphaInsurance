@@ -61,7 +61,6 @@ function buildFormValues(details = {}, fallback = {}) {
       ["name", "Name", "clientName", "ClientName"],
       fallback.name || fallback.clientName || ""
     ),
-    personType: "fizicka",
     email: getValue(
       details,
       ["emailAddress", "EmailAddress", "clientEmailAddress", "ClientEmailAddress"],

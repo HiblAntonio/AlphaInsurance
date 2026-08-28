@@ -262,7 +262,7 @@ export default function ContractorDetailsPage() {
             <div className="welcome-breadcrumb-logo">
               <img src="/images/Alpha logo frame.png" alt="Alpha logo" />
             </div>
-            <span>Alpha zastupanje</span>
+            <span>Alpha</span>
             <img className="welcome-breadcrumb-arrow" src="/svg/arrow-right.svg" alt="" />
             <span>Ugovaratelji</span>
             <img className="welcome-breadcrumb-arrow" src="/svg/arrow-right.svg" alt="" />

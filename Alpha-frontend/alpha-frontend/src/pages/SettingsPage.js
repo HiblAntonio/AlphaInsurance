@@ -49,7 +49,7 @@ function SettingsOverview({ user, agentDetails }) {
           <img src="/images/Alpha logo frame.png" alt="Alpha logo" />
         </div>
         <div>
-          <strong>DANTE - Program za vođenje polica osiguranja</strong>
+          <strong>ALPHA - Program za vođenje polica osiguranja</strong>
           <span>Alpha web v1.0.0.</span>
         </div>
       </div>
@@ -421,7 +421,7 @@ export default function SettingsPage() {
             <div className="welcome-breadcrumb-logo">
               <img src="/images/Alpha logo frame.png" alt="Alpha logo" />
             </div>
-            <span>Alpha zastupanje</span>
+            <span>Alpha</span>
             <img className="welcome-breadcrumb-arrow" src="/svg/arrow-right.svg" alt="" />
             <strong>Postavke</strong>
           </div>

@@ -1366,7 +1366,7 @@ export default function StatisticsPage() {
                 <div className="welcome-breadcrumb-logo">
                   <img src="/images/Alpha logo frame.png" alt="Alpha logo" />
                 </div>
-                <span className="welcome-breadcrumb-muted">Alpha zastupanje</span>
+                <span className="welcome-breadcrumb-muted">Alpha</span>
               </div>
               <img className="welcome-breadcrumb-arrow" src="/svg/arrow-right.svg" alt="" />
               <span className="welcome-breadcrumb-current">Statistika</span>

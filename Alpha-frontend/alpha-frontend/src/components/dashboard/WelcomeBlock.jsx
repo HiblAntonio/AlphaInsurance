@@ -15,7 +15,7 @@ export default function WelcomeBlock() {
             <img src="/images/Alpha logo frame.png" alt="Alpha logo" />
           </div>
 
-          <span className="welcome-breadcrumb-muted">Alpha zastupanje</span>
+          <span className="welcome-breadcrumb-muted">Alpha</span>
         </div>
 
         <img

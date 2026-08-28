@@ -16,7 +16,6 @@ const initialForm = {
   clientId: "",
   isNewClient: false,
   clientName: "",
-  personType: "fizicka",
   email: "",
   birthDate: "",
   phoneNumber: "",
@@ -287,8 +286,8 @@ export default function AddPolicyPage() {
         ? String(value).replace(/[^\d+]/g, "")
         : value;
 
-    const opensClientFields = name === "clientName" || name === "personType" || name === "email" || name === "birthDate" || name === "phoneNumber";
-
+    const opensClientFields = name === "clientName" || name === "email" || name === "birthDate" || name === "phoneNumber";
+    
     setForm((prev) => ({
       ...prev,
       [name]: name === "premium" ? sanitizePremium(nextValue) : nextValue,
@@ -428,7 +427,7 @@ export default function AddPolicyPage() {
                   <img src="/images/Alpha logo frame.png" alt="Alpha logo" />
                 </div>
 
-                <span>Alpha zastupanje</span>
+                <span>Alpha</span>
                 <span className="breadcrumb-separator">›</span>
                 <span>Police osiguranja</span>
                 <span className="breadcrumb-separator">›</span>

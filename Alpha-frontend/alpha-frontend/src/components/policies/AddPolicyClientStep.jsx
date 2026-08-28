@@ -95,38 +95,6 @@ export default function AddPolicyClientStep({
           )}
         </div>
 
-        <div className="person-type-row">
-            <label className="checkbox-pill">
-              <input
-                type="radio"
-                name="personType"
-                checked={values.personType === "fizicka"}
-                onChange={() => onChange("personType", "fizicka")}
-              />
-              <span>Fizička osoba</span>
-            </label>
-
-            <label className="checkbox-pill">
-              <input
-                type="radio"
-                name="personType"
-                checked={values.personType === "firma"}
-                onChange={() => onChange("personType", "firma")}
-              />
-              <span>Firma</span>
-            </label>
-
-            <label className="checkbox-pill">
-              <input
-                type="radio"
-                name="personType"
-                checked={values.personType === "obrt"}
-                onChange={() => onChange("personType", "obrt")}
-              />
-              <span>Obrt</span>
-            </label>
-        </div>
-
         <div className={`client-extra-fields ${clientFieldsOpen ? "open" : ""}`}>
           <div className="form-group">
             <label htmlFor="email">Email adresa</label>

@@ -56,7 +56,6 @@ export default function ChangeContractorPage() {
   const [lookupStatus, setLookupStatus] = useState("idle");
   const [newClient, setNewClient] = useState({
     clientName: "",
-    personType: "fizicka",
     email: "",
     dob: "",
     phoneNumber: "",
@@ -272,36 +271,6 @@ export default function ChangeContractorPage() {
 
             {isCreatingNew && (
               <>
-                <div className="person-type-row">
-                  <label className="checkbox-pill">
-                    <input
-                      type="radio"
-                      name="changePersonType"
-                      checked={newClient.personType === "fizicka"}
-                      onChange={() => updateNewClient("personType", "fizicka")}
-                    />
-                    <span>Fizička osoba</span>
-                  </label>
-                  <label className="checkbox-pill">
-                    <input
-                      type="radio"
-                      name="changePersonType"
-                      checked={newClient.personType === "firma"}
-                      onChange={() => updateNewClient("personType", "firma")}
-                    />
-                    <span>Firma</span>
-                  </label>
-                  <label className="checkbox-pill">
-                    <input
-                      type="radio"
-                      name="changePersonType"
-                      checked={newClient.personType === "obrt"}
-                      onChange={() => updateNewClient("personType", "obrt")}
-                    />
-                    <span>Obrt</span>
-                  </label>
-                </div>
-
                 <div className="form-group">
                   <label htmlFor="change-email">Email adresa</label>
                   <input

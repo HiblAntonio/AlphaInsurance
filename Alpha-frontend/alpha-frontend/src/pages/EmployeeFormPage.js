@@ -175,7 +175,7 @@ export default function EmployeeFormPage() {
             <div className="welcome-breadcrumb-logo">
               <img src="/images/Alpha logo frame.png" alt="Alpha logo" />
             </div>
-            <span>Alpha zastupanje</span>
+            <span>Alpha</span>
             <img className="welcome-breadcrumb-arrow" src="/svg/arrow-right.svg" alt="" />
             <span>Djelatnici</span>
             <img className="welcome-breadcrumb-arrow" src="/svg/arrow-right.svg" alt="" />

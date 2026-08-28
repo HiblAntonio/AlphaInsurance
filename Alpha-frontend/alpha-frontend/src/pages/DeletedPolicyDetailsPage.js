@@ -31,7 +31,7 @@ function DeletedPolicyBreadcrumbs() {
       <div className="details-brand-badge">
         <img src="/images/Alpha logo frame.png" alt="Alpha logo" />
       </div>
-      <span>Alpha zastupanje</span>
+      <span>Alpha</span>
       <img className="welcome-breadcrumb-arrow" src="/svg/arrow-right.svg" alt="" />
       <span>Smeće</span>
       <img className="welcome-breadcrumb-arrow" src="/svg/arrow-right.svg" alt="" />

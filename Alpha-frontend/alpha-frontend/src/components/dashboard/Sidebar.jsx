@@ -189,7 +189,7 @@ export default function Sidebar() {
         <div className="sidebar-bottom">
           <div className="sidebar-version-card">
             <div className="sidebar-version-head">
-              <strong>Verzija 1.0.7.</strong>
+              <strong>Verzija 1.0.0.</strong>
               <button type="button" className="sidebar-version-close" aria-label="Zatvori">
                 ×
               </button>
@@ -226,7 +226,7 @@ export default function Sidebar() {
           </button>
 
           <div className="sidebar-dropdown-footer">
-            <span>DANTE 1.0.0.</span>
+            <span>ALPHA 1.0.0.</span>
             <span>2026</span>
           </div>
         </div>,

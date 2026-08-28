@@ -1,6 +1,6 @@
-# DANTE — Insurance Policy Management System
+# ALPHA — Insurance Policy Management System
 
-> **Alpha web** · Version 1.0.6
+> **Alpha web** · Version 1.0.0.
 
 ---
 
@@ -31,17 +31,17 @@
 
 ## Overview
 
-DANTE is a web-based insurance policy management system built for insurance agents and their administrators. It provides a centralised platform for creating, tracking, renewing, and analysing insurance policies, along with employee management, client records, and detailed statistics.
+ALPHA is a web-based insurance policy management system built for insurance agents and their administrators. It provides a centralised (internal) platform for creating, tracking, renewing, and analysing insurance policies, along with employee management, client records, and detailed statistics.
 
 ## Features
 
 ### Policy Management
-- **Create policies** — Add new insurance policies linked to existing or new clients (individuals or legal entities)
+- **Create policies** — Add new insurance policies linked to existing or new clients
 - **Extend policies** — Renew expiring policies with pre-filled data from the previous term
 - **Edit policies** — Update policy details such as price, insurance company, type, location, partner, and remarks
 - **Delete & restore policies** — Soft-delete policies with a reason; restore them from the Trash
 - **Search & filter** — Filter policies by status (active, expiring, expired), insurance company, type, location, partner, price range, and date range
-- **Pagination** — Configurable page sizes with tab-based status counts
+- **Policy printing** — Printing insurance policies based on the provided filtering
 
 ### Statistics
 - **Today's policies** — Live view of all policies entered today with search and filter
@@ -111,7 +111,7 @@ DANTE is a web-based insurance policy management system built for insurance agen
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/HiblAntonio/Dante-backup
+git clone https://github.com/HiblAntonio/AlphaInsurance
 cd "Alpha web"
 ```
 
@@ -158,8 +158,7 @@ Once the backend is running, open `http://localhost:5000/swagger` to browse and 
 
 | Role | Permissions |
 |------|------------|
-| **Super Admin** | Full access to all features including employee management and lookup table administration |
-| **Admin** | Same as Super Admin |
+| **Admin** | Full access to all features including employee management and lookup table administration |
 | **Djelatnik** (Agent) | Can manage policies and clients; no access to employee management or lookup table settings |
 
 ## Application Guide
@@ -194,17 +193,17 @@ Go to **Postavke → Vrijednosti lookup tablice**. Select a category tab, then u
 
 ## Pregled
 
-DANTE je web aplikacija za upravljanje policama osiguranja namijenjena agentima osiguranja i njihovim administratorima. Pruža centraliziranu platformu za kreiranje, praćenje, produživanje i analizu polica osiguranja, uz upravljanje djelatnicima, evidenciju klijenata i detaljne statistike.
+ALPHA je web aplikacija za upravljanje policama osiguranja namijenjena zastupanjima za osiguranja i njihovim administratorima. Pruža centraliziranu (internu) platformu za kreiranje, praćenje, produživanje i analizu polica osiguranja, uz upravljanje djelatnicima, evidenciju klijenata i detaljne statistike.
 
 ## Mogućnosti
 
 ### Upravljanje policama
-- **Dodavanje polica** — Unos novih polica osiguranja vezanih uz postojeće ili nove klijente (fizičke ili pravne osobe)
+- **Dodavanje polica** — Unos novih polica osiguranja vezanih uz postojeće ili nove klijente
 - **Produživanje polica** — Obnavljanje polica kojima ističe rok uz automatski popunjene podatke iz prethodnog perioda
 - **Uređivanje polica** — Ažuriranje detalja poput cijene, osiguravajuće kuće, vrste, prodajnog mjesta, partnera i napomene
-- **Brisanje i vraćanje polica** — Soft-delete polica s razlogom brisanja; moguće ih je vratiti iz košarice
+- **Brisanje i vraćanje polica** — Soft-delete polica s razlogom brisanja
 - **Pretraga i filtriranje** — Filtriranje po statusu (aktivna, ističe, istekla), osiguravajućoj kući, vrsti, prodajnom mjestu, partneru, rasponu cijene i datumu
-- **Straničenje** — Konfigurabilne veličine stranica s brojačima po statusnim tabovima
+- **Printanje polica** — Printanje polica osiguranja s odabranim filterom
 
 ### Statistike
 - **Danas unesene police** — Pregled svih polica unesenih danas s pretragom i filtriranjem
@@ -240,7 +239,7 @@ DANTE je web aplikacija za upravljanje policama osiguranja namijenjena agentima 
   - Deaktivirane vrijednosti ne prikazuju se u formama za police, ali ostaju vidljive u filtrima i statistikama
 - **Promjena lozinke** — Svaki korisnik može promijeniti vlastitu lozinku
 
-### Bočna traka i navigacija
+### Bočna (traka) navigacija
 - Sklopiva bočna traka s izbornicima ovisno o ulozi korisnika
 - Živi brojač na stavci „Statistika" koji prikazuje broj polica unesenih danas (osvježava se svakih 2 minute)
 - Gumb „Što je novo?" koji prikazuje changelog trenutne verzije
@@ -274,7 +273,7 @@ DANTE je web aplikacija za upravljanje policama osiguranja namijenjena agentima 
 ### 1. Kloniranje repozitorija
 
 ```bash
-git clone https://github.com/HiblAntonio/Dante-backup
+git clone https://github.com/HiblAntonio/AlphaInsurance
 cd "Alpha web"
 ```
 
@@ -321,8 +320,7 @@ Nakon pokretanja backenda, otvorite `http://localhost:5000/swagger` za pregled i
 
 | Uloga | Ovlasti |
 |-------|---------|
-| **Super Admin** | Potpuni pristup svim funkcionalnostima uključujući upravljanje djelatnicima i lookup tablicama |
-| **Admin** | Isto kao Super Admin |
+| **Admin** | Potpuni pristup svim funkcionalnostima uključujući upravljanje djelatnicima i lookup tablicama |
 | **Djelatnik** | Može upravljati policama i klijentima; nema pristup upravljanju djelatnicima ni lookup postavkama |
 
 ## Vodič za korištenje
