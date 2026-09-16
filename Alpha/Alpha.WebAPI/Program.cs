@@ -74,6 +74,10 @@ builder.Services.AddScoped<JwtService>();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+builder.Services.AddCors(o => o.AddDefaultPolicy(p =>
+    p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
