@@ -22,26 +22,23 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
     });
 
 builder.Services.AddCors(options =>
 {
-    var allowedOrigins = new[]
-    {
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:5000",
-        "http://127.0.0.1:5000",
-        "http://localhost:5055",
-        "http://127.0.0.1:5055"
-    };
-
-    options.AddPolicy("AllowReact",
-        policy => policy.WithOrigins(allowedOrigins)
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+    options.AddPolicy("AllowReact", policy =>
+        policy.SetIsOriginAllowed(origin =>
+              {
+                  var host = new Uri(origin).Host;
+                  return host == "localhost"
+                      || host == "127.0.0.1"
+                      || host.EndsWith(".vercel.app")
+                      || host.EndsWith("alpha-zastupanje.hr");
+              })
+              .AllowAnyMethod()
+              .AllowAnyHeader());
 });
 
 builder.Services.AddAuthorization();
@@ -71,28 +68,16 @@ builder.Services.AddScoped<IPartnerService, PartnerService>();
 builder.Services.AddScoped<IPolicyTypeService, PolicyTypeService>();
 builder.Services.AddScoped<JwtService>();
 
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddCors(o => o.AddDefaultPolicy(p =>
-    p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
-
 var app = builder.Build();
+
+app.UseCors("AllowReact");
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors("AllowReact");
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
